@@ -45,7 +45,6 @@ tasks.withType(JavaCompile) {
 
 repositories {
     mavenLocal()
-    //  maven { url "http://222.212.90.174:10000/repository/maven-public/" }
     maven { url "http://repo.maven.apache.org/maven2" }
     jcenter()
     mavenCentral()
