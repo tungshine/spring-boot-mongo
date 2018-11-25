@@ -1,0 +1,73 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.6.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+
+plugins {
+    id 'idea'
+    id 'java'
+}
+
+idea {
+    module {
+        jdkName = '1.8'
+        inheritOutputDirs = false
+        downloadJavadoc = false
+        downloadSources = true
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.tungshine.springframework.boot'
+version = ''
+
+description = "spring-boot-mongo"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+    mavenLocal()
+    //  maven { url "http://222.212.90.174:10000/repository/maven-public/" }
+    maven { url "http://repo.maven.apache.org/maven2" }
+    jcenter()
+    mavenCentral()
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '1.5.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.6.RELEASE'
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
+    compile group: 'org.springframework', name: 'spring-test', version: '4.3.10.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-test', version: '1.5.6.RELEASE'
+}
+
+/**
+ * 复制且重命名打包后的jar
+ */
+task CopyAndRenameJar(type: Copy) {
+    println 'copy jar........'
+    from('build/libs/' + rootProject.name + '.jar')
+    into('docker/')// 复制到指定目标目录
+    rename {
+        //在复制时重命名文件
+        rootProject.name + "-" + "0.0.1-SNAPSHOT.jar"
+    }
+}
