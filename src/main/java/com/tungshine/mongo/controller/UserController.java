@@ -6,6 +6,8 @@ import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;
 import com.tungshine.mongo.model.User;
 import com.tungshine.mongo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 /**
  * @Author: TungShine
@@ -23,7 +26,9 @@ import java.io.OutputStream;
  * @Modified By:
  */
 @Controller
-public class UserController {
+public class UserController extends BaseApi {
+
+    final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -34,8 +39,11 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/get/{id}")
-    public User getUser(@PathVariable int id) {
-        return userService.getUser(id);
+    public Map<String, Object> getUser(@PathVariable Integer id) {
+        if (null == id) {
+            return returnError("id不能为空", 60001);
+        }
+        return returnSuccess(userService.getUser(id));
     }
 
     @ResponseBody
