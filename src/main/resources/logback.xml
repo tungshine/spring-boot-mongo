@@ -7,7 +7,7 @@
     <!--<springProperty scope="context" name="elk_master_port" source="elk_master_port" defaultValue=""/>-->
     <property name="LOG_PATH" value="logs"></property>
 
-    <property name="DIR_PATH" value="trh-bill"></property>
+    <property name="DIR_PATH" value="spring-boot-mongo"></property>
 
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -123,7 +123,7 @@
         </filter>
         <host>${elk_master_ip}</host>
         <port>${elk_master_port}</port>
-        <customFields>{"logname":"sys","servername":"trh-bill"}</customFields>
+        <customFields>{"logname":"sys","servername":"spring-boot-mongo"}</customFields>
     </appender>-->
     <!--<springProfile name="test,dev">
         <logger name="org.springframework.jdbc.core" level="trace" additivity="false">
