@@ -41,6 +41,7 @@ public class UserController extends BaseApi {
     @RequestMapping("/get/{id}")
     public Map<String, Object> getUser(@PathVariable Integer id) {
         if (null == id) {
+            logger.error("id不能为空");
             return returnError("id不能为空", 60001);
         }
         return returnSuccess(userService.getUser(id));
