@@ -26,4 +26,4 @@ fi
 cd /home/tx_workspace/project_git/spring-boot-mongo &&
 gradle clean && gradle build -x test && gradle CopyAndRenameJar &&
 cd docker &&
-docker build -t tung/spring-boot-mongo:spring-boot-mongo_v1.0 .
+docker build -t tungshine/spring-boot-mongo:spring-boot-mongo_v1.0 .
