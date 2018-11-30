@@ -32,6 +32,6 @@ public class User implements Serializable {
     }
 
     public String toString() {
-        return "User [id=" + getId() + ", name=" + getName() + ", age=" + getAge() + "]";
+        return "User [id=" + this.id + ", name=" + this.name + ", age=" + age + "]";
     }
 }
