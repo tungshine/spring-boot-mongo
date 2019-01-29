@@ -11,8 +11,6 @@ import java.io.Serializable;
  * @Date: Create in 1:10 2018/7/19
  * @Modified By:
  */
-@Getter
-@Setter
 public class User implements Serializable {
 
     private static final long serialVersionUID = 5754518979671349912L;
@@ -28,6 +26,30 @@ public class User implements Serializable {
     public User(Integer id, String name, int age) {
         this.id = id;
         this.name = name;
+        this.age = age;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
         this.age = age;
     }
 
